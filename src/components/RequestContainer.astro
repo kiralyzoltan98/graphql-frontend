@@ -24,12 +24,13 @@ const data = JSON.parse(result).data;
 const queryType = data.__schema.queryType;
 const fields = queryType.fields;
 
-const endpoints = fields.map((field: { description: string}) => field.description);
+//TODO: define a type for this
+const endpoints = fields.map((field: any) => field.description);
 
 ---
 
 <div class="request-container">
-    {endpoints.map((endpoint: { type: string}) => {
+    {endpoints.map((endpoint: string) => {
         let result = <Checkbox name={endpoint}/>
         if (endpoint.includes("ById")){
             result = <Checkbox name={endpoint}/> <input type="text" placeholder="id" />
