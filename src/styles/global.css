@@ -16,7 +16,8 @@
 
 .response-container {
     display: flex;
-    flex-direction: column;
+    flex-flow: row wrap;
+    flex-shrink: 3;
     border: blue 1px solid;
     width: 45%;
 }
