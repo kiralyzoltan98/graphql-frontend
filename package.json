@@ -2,6 +2,7 @@
   "name": "",
   "type": "module",
   "version": "0.0.1",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,6 +11,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^2.0.17"
+    "@astrojs/react": "^2.1.0",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "astro": "^2.0.17",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

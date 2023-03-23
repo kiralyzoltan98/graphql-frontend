@@ -1,10 +1,76 @@
 ---
 import RequestContainer from "./RequestContainer.astro";
-import ResponseContainer from "./ResponseContainer.astro";
+//import ResponseContainer from "./ResponseContainer.astro";
+import ResponseContainer from "./ResponseContainer.jsx";
+
+let cardData = {
+    "books": [
+        {
+            "name": "Harry Potter and the Chamber of Secrets"
+        },
+        {
+            "name": "Harry Potter and the Prisoner of Azkaban"
+        },
+        {
+            "name": "Harry Potter and the Goblet of Fire"
+        },
+        {
+            "name": "The Fellowship of the Ring"
+        }
+    ]
+};
 ---
+
+<script>
+var myHeaders = new Headers();
+let cardData = {};
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+    "query": "{ books { name } }"
+});
+
+
+async function fetchGraphQL() {
+	var requestOptions = {
+		method: 'POST',
+		headers: myHeaders,
+		body: raw,
+	};
+	const response = await fetch("http://localhost:5000/graphql?", requestOptions);
+	const result = await response.text();
+	cardData = JSON.parse(result).data;
+	console.log(cardData);
+	return result;
+}
+
+const buttons = document.querySelectorAll('[data-send-button]');
+
+buttons.forEach((button) => {
+	button.addEventListener('click', async () => await fetchGraphQL());
+});
+
+</script>
 
 <div class="graphql-container">
     <RequestContainer />
-    <button>Send</button>
-    <ResponseContainer />
+    <button data-send-button class="send-button">Send</button>
+    <!-- <ResponseContainer cardData={cardData} /> -->
+	<ResponseContainer cards={cardData?.books} client:visible/>
+
 </div>
+
+<style>
+	.send-button {
+		background-color: #4CAF50; /* Green */
+		border: none;
+		color: white;
+		padding: 15px 32px;
+		text-align: center;
+		height: 3.5rem;
+		font-size: 16px;
+		cursor: pointer;
+		margin-top: 5rem;
+		border-radius: 5px;
+	}
+</style>

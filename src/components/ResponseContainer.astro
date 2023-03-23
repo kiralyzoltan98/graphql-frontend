@@ -2,46 +2,27 @@
 import Card from './Card.astro';
 import Checkbox from './Checkbox.astro';
 
-const { endpoints } = Astro.props;
+// const { cardData } = Astro.props;
+// const dummy = {
+// 	href: "",
+// 	title: "Minta",
+// 	body: "Valami hosszú szöveg ami azt taglalja, hogy mit tartalmaz ez az object."
+// }
+
+const { cardData } = Astro.props;
+
+let books = "book";
+
 ---
 
 <div class="response-container">
     <ul role="list" class="link-card-grid">
-        <Card
-            href=""
-            title="Documentation"
-            body="Learn how Astro works and explore the official API docs."
-        />
-        <Card
-            href=""
-            title="Documentation"
-            body="Learn how Astro works and explore the official API docs."
-        />
-        <Card
-            href=""
-            title="Documentation"
-            body="Learn how Astro works and explore the official API docs."
-        />
-        <Card
-            href=""
-            title="Documentation"
-            body="Learn how Astro works and explore the official API docs."
-        />
-        <Card
-            href=""
-            title="Documentation"
-            body="Learn how Astro works and explore the official API docs."
-        />
-        <Card
-            href=""
-            title="Documentation"
-            body="Learn how Astro works and explore the official API docs."
-        />
-        <Card
-            href=""
-            title="Documentation"
-            body="Learn how Astro works and explore the official API docs."
-        />
+		
+		{cardData.books.map((singleCard: any) => {
+			let result = <Card href="" title={books} body={singleCard.name} />
+			return result;
+		})}
+
     </ul>
 </div>
 
