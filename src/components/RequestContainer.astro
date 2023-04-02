@@ -33,7 +33,7 @@ const endpoints = fields.map((field: any) => field.description);
     {endpoints.map((endpoint: string) => {
         let result = <Checkbox name={endpoint}/>
         if (endpoint.includes("ById")){
-            result = <Checkbox name={endpoint}/> <input type="text" placeholder="id" />
+            result = <Checkbox name={endpoint}/> <input type="text" id={endpoint} placeholder="id" />
         }
         return result;
     })}

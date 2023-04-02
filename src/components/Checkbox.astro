@@ -1,7 +1,8 @@
 ---
 
 const { name } = Astro.props;
+const id = name + "CBX";
 ---
 
-<input type="checkbox" id={name}>
-<label for={name}>{name}</label>
+<input type="checkbox" id={id}>
+<label for={id}>{name}</label>
